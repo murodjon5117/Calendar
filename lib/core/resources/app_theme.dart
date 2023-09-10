@@ -1,4 +1,6 @@
 import 'package:custom_calendar/core/resources/app_colors.dart';
+import 'package:custom_calendar/core/resources/app_values.dart';
+import 'package:custom_calendar/core/utils/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,22 +8,23 @@ import 'package:google_fonts/google_fonts.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
     // main colors
-    scaffoldBackgroundColor: Colors.white,
-
+    scaffoldBackgroundColor: Colors.black,
+    primarySwatch: getMaterialColor(AppColors.primarySwatchColor),
+    splashColor: AppColors.transparent,
     // Bottom nav bar theme
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: AppColors.secondaryBackground,
-      selectedItemColor: AppColors.primary,
-      unselectedItemColor: AppColors.primaryText,
+      backgroundColor: AppColors.transparent,
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
     ),
 
     // app bar theme
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.primaryBackground,
+      backgroundColor: Colors.black,
       elevation: 0,
-      centerTitle: true,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
+      centerTitle: false,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       titleTextStyle: _getTextStyle(
         fontSize: 18,
         color: AppColors.secondaryText,
@@ -31,21 +34,27 @@ ThemeData getApplicationTheme() {
     // text theme
     textTheme: TextTheme(
       titleMedium: _getTextStyle(
-        fontSize: 20,
-        color: AppColors.secondaryText,
-      ),
+          fontSize: AppSize.s18,
+          color: AppColors.secondaryText,
+          fontWeight: FontWeight.w700),
+      titleLarge: _getTextStyle(
+          fontSize: AppSize.s20,
+          color: AppColors.secondaryText,
+          fontWeight: FontWeight.w700),
       titleSmall: _getTextStyle(
-        fontSize: 18,
-        color: AppColors.secondaryText,
+        fontSize: AppSize.s16,
+        color: AppColors.white,
+        fontWeight: FontWeight.w600,
       ),
       bodyLarge: _getTextStyle(
-        fontSize: 14,
+        fontSize: AppSize.s15,
         fontWeight: FontWeight.w400,
-        color: AppColors.primaryText,
+        color: AppColors.white,
       ),
       bodyMedium: _getTextStyle(
-        fontSize: 14,
-        color: AppColors.secondaryText,
+        fontSize: AppSize.s12,
+        color: AppColors.inactiveColor60,
+        fontWeight: FontWeight.w400,
       ),
       bodySmall: _getTextStyle(
         fontSize: 12,
@@ -61,7 +70,7 @@ TextStyle _getTextStyle({
   FontWeight fontWeight = FontWeight.w600,
   required Color color,
 }) {
-  return GoogleFonts.poppins(
+  return GoogleFonts.mavenPro(
     fontSize: fontSize,
     fontWeight: fontWeight,
     color: color,
